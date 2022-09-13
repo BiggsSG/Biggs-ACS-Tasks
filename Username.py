@@ -1,5 +1,5 @@
-print("Please input your first name")
+print ("Please input your first name")
 firstname = input()
-print("Please input your surname")
+print ("Please input your surname")
 surname = input()
-print(firstname, surname)
+print (firstname, surname)
