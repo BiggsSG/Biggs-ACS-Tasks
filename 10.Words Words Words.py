@@ -1,3 +1,3 @@
 sentence = input("Please input some words ")
-num = sentence.count(" ") + 1
-print (sentence, num)
+NoOfWords = sentence.count(" ") + 1 # + 1 is used to count the inital entered word
+print (sentence, NoOfWords)
