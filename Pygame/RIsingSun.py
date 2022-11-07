@@ -36,11 +36,8 @@ while not done:
 
     # -- Game logic goes after this comment 
     sun_x = sun_x + 5
-    if sun_x > 900:
-        screen.fill (DARK_BLUE)
-        time.sleep(5)
+    if sun_x > 740:
         sun_x = 0
-        screen.fill (LIGHT_BLUE)
         
     #End If
     # -- Screen background is BLACK 
