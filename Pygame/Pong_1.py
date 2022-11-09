@@ -20,6 +20,8 @@ done = False
 ball_width = 20
 x_val = 150
 y_val = 200
+x_direction = 1
+y_direction = 1
 # -- Manages how fast screen refreshes
 clock = pygame.time.Clock() 
 
@@ -33,12 +35,24 @@ while not done:
     #Next event 
 
     # -- Game logic goes after this comment 
+    x_val = x_val + x_direction
+    y_val = y_val + y_direction
+    if y_val > 460:
+        y_direction = -1
+    elif y_val < 0:
+        y_direction = 1
+    if x_val > 620:
+        x_direction = -1
+    elif x_val < 0:
+        x_direction = 1
+    
+
         
     #End If
     # -- Screen background is BLACK 
     screen.fill (BLACK)
     # -- Draw here 
-    pygame.draw.rect(screen, BLUE, (150, 200, 20, 20))
+    pygame.draw.rect(screen, BLUE, (x_val, y_val, ball_width, 20))
       # -- flip display to reveal new position of objects
     pygame.display.flip() 
     # - The clock ticks over 
