@@ -36,13 +36,13 @@ while not done:
         if event.type == pygame.QUIT: 
             done = True
 
-        if event.type == pygame.KEYDOWN: 
-            if event.key == pygame.K_UP: 
-                # - write logic that happens on key press here
-                y_padd = y_padd - 5
-            elif event.key == pygame.K_DOWN:
-                y_padd = y_padd + 5
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_UP]: 
                 # - write logic that happens on key press here 
+                y_padd = y_padd - 5 
+        if keys[pygame.K_DOWN]: 
+                # - write logic that happens on key press here 
+                y_padd = y_padd + 5
             #End If 
         #End If 
     #Next event
@@ -58,6 +58,11 @@ while not done:
         x_direction = -1
     elif x_val < 0:
             x_direction = 1
+    if y_padd > 420:
+        y_padd = 420
+    if y_padd < 0:
+        y_padd = 0
+
     
 
         
