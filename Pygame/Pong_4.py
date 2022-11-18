@@ -57,7 +57,8 @@ while not done:
     if x_val > 620:
         x_direction = x_direction*-1
     elif x_val < 0:
-            x_direction = x_direction*-1
+           x_val = 150
+           y_val = 200
     if y_padd > 420:
         y_padd = 420
     if y_padd < 0:
