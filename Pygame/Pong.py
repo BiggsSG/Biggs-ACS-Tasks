@@ -68,8 +68,10 @@ while not done:
         y_padd = 420
     if y_padd < 0:
         y_padd = 0
-    if x_val +x_direction < x_padd +60 and y_val>=y_padd and y_val <=y_padd+15 :
-        x_direction = x_direction*-1        
+    if x_val +x_direction < x_padd +15 and y_val>=y_padd and y_val <=y_padd+60 :
+        x_direction = x_direction*-1  
+    if score > 10:
+        pygame.quit()
     #End If
     # -- Screen background is BLACK 
     screen.fill (BLACK)
@@ -77,7 +79,7 @@ while not done:
     pygame.draw.rect(screen, BLUE, (x_val, y_val, ball_width, 20))
     pygame.draw.rect(screen, WHITE, (x_padd, y_padd, padd_length, padd_width))
     text_surface = my_font.render('Score: ' + str(score), False, (255, 255, 255))
-    screen.blit(text_surface, (0,0))
+    screen.blit(text_surface, (260,0))
       # -- flip display to reveal new position of objects
     pygame.display.flip() 
     # - The clock ticks over 

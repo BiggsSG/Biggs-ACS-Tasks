@@ -28,6 +28,12 @@ class Snow(pygame.sprite.Sprite):
     # Class update function - runs for each pass through the game loop 
     def update(self): 
         self.rect.y = self.rect.y + self.speed
+    def top(self):
+        if self.rect.y > 485:
+            self.rect.y = 0
+            self.rect.x = random.randrange(0, 600)
+
+
 
 # -- Initialise PyGame
 pygame.init()
@@ -66,9 +72,9 @@ while not done:
             done = True 
         #End If 
     #Next event 
-
     # -- Game logic goes after this comment
-    all_sprites_group.update() 
+    all_sprites_group.update()
+    all_sprites_group.top()
     # -- Screen background is BLACK 
     screen.fill (BLACK)
     # -- Draw here 
