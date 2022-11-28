@@ -9,6 +9,9 @@ YELLOW = (255,255,0)
 
 # -- Initialise PyGame
 pygame.init()
+pygame.font.init() # you have to call this at the start, 
+                   # if you want to use this module.
+my_font = pygame.font.SysFont('Comic Sans MS', 30)
 
 # -- Blank Screen
 size = (640,480)
@@ -26,6 +29,7 @@ padd_length = 15
 padd_width = 60
 x_padd = 0
 y_padd = 20
+score = 0
 # -- Manages how fast screen refreshes
 clock = pygame.time.Clock() 
 
@@ -59,22 +63,21 @@ while not done:
     elif x_val < -20:
         x_val = 320
         y_val = 240
+        score = score + 1
     if y_padd > 420:
         y_padd = 420
     if y_padd < 0:
         y_padd = 0
-    if x_val +x_direction< x_padd+15 and y_val>=y_padd and y_val<=y_padd+60 :
-        x_direction = x_direction*-1
-
-    
-
-        
+    if x_val +x_direction < x_padd +60 and y_val>=y_padd and y_val <=y_padd+15 :
+        x_direction = x_direction*-1        
     #End If
     # -- Screen background is BLACK 
     screen.fill (BLACK)
     # -- Draw here 
     pygame.draw.rect(screen, BLUE, (x_val, y_val, ball_width, 20))
     pygame.draw.rect(screen, WHITE, (x_padd, y_padd, padd_length, padd_width))
+    text_surface = my_font.render('Score: ' + str(score), False, (255, 255, 255))
+    screen.blit(text_surface, (0,0))
       # -- flip display to reveal new position of objects
     pygame.display.flip() 
     # - The clock ticks over 
