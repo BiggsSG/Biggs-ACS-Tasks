@@ -8,6 +8,7 @@ BLACK = (0,0,0)
 WHITE = (255,255,255)
 BLUE = (50,50,255)
 YELLOW = (255,255,0)
+GREEN = (0,255,0)
 
 ## -- Define the class snow which is a sprite 
 class Snow(pygame.sprite.Sprite): 
@@ -28,12 +29,8 @@ class Snow(pygame.sprite.Sprite):
     # Class update function - runs for each pass through the game loop 
     def update(self): 
         self.rect.y = self.rect.y + self.speed
-    def top(self):
-        if self.rect.y > 485:
+        if self.rect.y >480:
             self.rect.y = 0
-            self.rect.x = random.randrange(0, 600)
-
-
 
 # -- Initialise PyGame
 pygame.init()
@@ -74,7 +71,6 @@ while not done:
     #Next event 
     # -- Game logic goes after this comment
     all_sprites_group.update()
-    all_sprites_group.top()
     # -- Screen background is BLACK 
     screen.fill (BLACK)
     # -- Draw here 
