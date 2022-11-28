@@ -12,7 +12,7 @@ YELLOW = (255,255,0)
 ## -- Define the class snow which is a sprite 
 class Snow(pygame.sprite.Sprite): 
     # Define the constructor for snow 
-    def __init__(self, color, width, height): 
+    def __init__(self, color, width, height, speed): 
         # Call the sprite constructor 
         super().__init__()
          # Create a sprite and fill it with colour
@@ -22,7 +22,12 @@ class Snow(pygame.sprite.Sprite):
         self.rect = self.image.get_rect() 
         self.rect.x = random.randrange(0, 600) 
         self.rect.y = random.randrange(0, 400)
+        # Set speed of the sprite 
+        self.speed = speed
          #End Procedure #End Class
+    # Class update function - runs for each pass through the game loop 
+    def update(self): 
+        self.rect.y = self.rect.y + self.speed
 
 # -- Initialise PyGame
 pygame.init()
@@ -45,7 +50,7 @@ clock = pygame.time.Clock()
 number_of_flakes = 50 
 # we are creating 50 snowflakes 
 for x in range (number_of_flakes): 
-    my_snow = Snow(WHITE, 5, 5) 
+    my_snow = Snow(WHITE, 5, 5, 1) 
     # snowflakes are white with size 5 by 5 px 
     snow_group.add (my_snow) 
     # adds the new snowflake to the group of snowflakes 
@@ -62,7 +67,8 @@ while not done:
         #End If 
     #Next event 
 
-    # -- Game logic goes after this comment 
+    # -- Game logic goes after this comment
+    all_sprites_group.update() 
     # -- Screen background is BLACK 
     screen.fill (BLACK)
     # -- Draw here 
