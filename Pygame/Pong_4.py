@@ -56,15 +56,15 @@ while not done:
         y_direction = y_direction*-1
     if x_val > 620:
         x_direction = x_direction*-1
-    elif x_val < 0:
-        x_val = 150
-        y_val = 200
+    elif x_val < -20:
+        x_val = 320
+        y_val = 240
     if y_padd > 420:
         y_padd = 420
     if y_padd < 0:
         y_padd = 0
-    if x_val < x_padd + 15:
-        x_direction = x_direction*-1 
+    if x_val +x_direction< x_padd+15 and y_val>=y_padd and y_val<=y_padd+60 :
+        x_direction = x_direction*-1
 
     
 
