@@ -46,15 +46,15 @@ class player(pygame.sprite.Sprite):
         self.rect.x = (300) 
         self.rect.y = (size[0] - height) 
         # Set speed of the sprite 
-        self.speed = 0
-        def player_set_speed(val):
-            self.speed = (val)
+        speed = 0
          #End Procedure #End Class
     # Class update function - runs for each pass through the game loop 
     def update(self): 
         self.rect.y = self.rect.y + self.speed
         if self.rect.y >480:
             self.rect.y = 0
+    def player_set_speed(val):
+        speed = (val)
 # -- Initialise PyGame
 pygame.init()
 
