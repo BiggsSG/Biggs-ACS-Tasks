@@ -53,8 +53,7 @@ class player(pygame.sprite.Sprite):
         self.rect.y = self.rect.y + self.speed
         if self.rect.y >480:
             self.rect.y = 0
-    def player_set_speed(val):
-        self.speed = (val)
+
 # -- Initialise PyGame
 pygame.init()
 
