@@ -44,7 +44,7 @@ class player(pygame.sprite.Sprite):
         # Set the position of the sprite 
         self.rect = self.image.get_rect() 
         self.rect.x = (300) 
-        self.rect.y = (size[0] - height) 
+        self.rect.y = (470) 
         # Set speed of the sprite 
         self.speed = 0
          #End Procedure #End Class
