@@ -52,10 +52,16 @@ class player(pygame.sprite.Sprite):
         self.lives = 5
         # set bullets
         self.bullet_count = 50
+        #set score
+        self.score = 0
          #End Procedure #End Class
     # Class update function - runs for each pass through the game loop 
     def player_set_speed(self, num):
         self.speed = num
+    def bullet_set(self, num):
+        self.bullet_count = self.bullet_count - num
+    def player_x_val(self):
+        return self.rect.x
     def update(self): 
         self.rect.x = self.rect.x + self.speed
         if self.rect.x + self.speed >= 630:
@@ -74,14 +80,17 @@ class Bullet(pygame.sprite.Sprite):
         self.image.fill(color)
         # Set the position of the sprite
         self.rect = self.image.get_rect()
-        self.rect.x = player.get_x() + 10
-        self.rect.y = 700
+        self.rect.x = (Player.player_x_val() + 4)
+        self.rect.y = (400-height)
+        self.speed = -2
+    #function to increase score everytime invade is hit
+    def bullet_hit(self):
+        Player.score = Player.score + 5
     def update(self):
         # Move bullet up 
-        self.rect.y = self.rect.y - 4
+        self.rect.y = self.rect.y + self.speed
         if pygame.sprite.groupcollide(bullet_group, invader_group, True, True, collided = None):
-            player.hitTarget()
-            print("******")
+            Bullet.bullet_hit(self)
     
         
 
@@ -123,14 +132,11 @@ for x in range (number_of_invaders):
 Player = player(YELLOW, 10, 10)
 all_sprites_group.add (Player) 
 
-# Procedure to fire bullet
 def fire():
-    mybullet = Bullet(RED, 5, 12)
-    all_sprites_group.add(mybullet)
-    bullet_group.add(mybullet)
-    bullet_count = bullet_count - 1
-
-score = 0
+    bullet = Bullet(RED, 3, 3)
+    all_sprites_group.add(bullet)
+    bullet_group.add(bullet)
+    Player.bullet_set(1)
 
 ### -- Game Loop 
 while not done: 
@@ -143,8 +149,7 @@ while not done:
                 Player.player_set_speed(-3) # speed set to -3 
             elif event.key == pygame.K_RIGHT: # - if the right key pressed 
                 Player.player_set_speed(3) # speed set to 3 
-            elif event.key == pygame.KEYDOWN:
-             if event.key == pygame.K_UP:
+            elif event.key == pygame.K_UP:
                 fire()
         elif event.type == pygame.KEYUP: # - a key released 
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT: 
@@ -163,7 +168,7 @@ while not done:
     all_sprites_group.draw (screen)
     text_surface = my_font.render('Lives: ' + str(Player.lives), False, (255, 255, 255))
     text_surface2 = my_font.render('Bullets: ' + str(Player.bullet_count), False, (255, 255, 255))
-    text_surface3 = my_font.render('Score: ' + str(score), False, (255, 255, 255))
+    text_surface3 = my_font.render('Score: ' + str(Player.score), False, (255, 255, 255))
     screen.blit(text_surface, (50,20))
     screen.blit(text_surface2, (50,50))
     screen.blit(text_surface3, (50,80))
